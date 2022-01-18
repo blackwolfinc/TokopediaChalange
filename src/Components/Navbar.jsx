@@ -56,7 +56,11 @@ export default function MenuAppBar() {
             aria-label="menu"
           ></IconButton>
           <Typography variant="h6" className={classes.title}>
-            Pokedex
+          <a 
+                   className={css`
+                   text-decoration: auto;
+                   color: #000;
+                 `} href="/pokemonList"> Pokemon</a>
           </Typography>
           {auth && (
             <div>

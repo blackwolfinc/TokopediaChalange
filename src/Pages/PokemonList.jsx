@@ -38,7 +38,7 @@ class PokemonList extends Component {
                   margin-top: 6rem;
                   margin-left: 2rem;
                   margin-right: 2rem;
-                  border: 3px solid #bababa7c;
+                  border: 3px solid #0d131ae6;
                   display: flex;
                   justify-content: center;
                   border-radius: 12px;
@@ -47,6 +47,7 @@ class PokemonList extends Component {
                   box-shadow: 35px -35px 70px #bababa7c, -35px 35px 70px #ffffff;
                 `}
               >
+                {console.log(x)}
                 <Grid
                   item
                   xs={12}

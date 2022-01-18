@@ -1,4 +1,4 @@
-import React, { useEffect, useState  ,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Container,
   Grid,
@@ -8,13 +8,13 @@ import {
   Typography,
   ExpandMoreIcon,
   AccordionDetails,
-  Dialog ,
-  DialogActions ,
-  DialogContent ,
-  DialogContentText ,
-  DialogTitle ,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Button,
-  TextField
+  TextField,
 } from "@material-ui/core";
 import ApolloClient from "apollo-boost";
 import { useHistory } from "react-router-dom";
@@ -64,18 +64,63 @@ export const PokemonDetail = () => {
     };
   })();
 
-  const HandleNewName=(e)=>{
-    setNamePokemon(e.target.value)
+  const HandleNewName = (e) => {
+    setNamePokemon(e.target.value);
+  };
+
+  const handleCheckname =(data)=>{
+    let HandleChange =true
+    let DataFromBack = JSON.parse(window.localStorage.getItem("dataPokemon"));
+    if(DataFromBack !==null){
+      DataFromBack.map((result)=>{
+        if(result.newName !== data){
+        
+        }
+        else{
+          HandleChange=false
+        }
+      })
+    }
+
+
+      return HandleChange
   }
 
-  const NewPokemonSubmit =()=>{
 
-    window.localStorage.setItem( "newName" , NamePokemon )
-    window.localStorage.setItem(   "dataPokemon" ,JSON.stringify(DataPokemon) )
+  const NewPokemonSubmit = () => {
+    let DataFromBack = JSON.parse(window.localStorage.getItem("dataPokemon"));
+    let img = window.localStorage.getItem("img");
+
+ 
+   
+    if(handleCheckname(NamePokemon) === true){
+      if (DataFromBack === null) {
+        let DataStore = [
+          { ...DataPokemon, newName: NamePokemon, imgPokemon: img , idNew : 0},
+        ];
+        window.localStorage.setItem("dataPokemon", JSON.stringify(DataStore));
+        window.localStorage.setItem("Lastid", 0);
+      } else {
+        let DataStore = [
+
+        ];
+        let Lastid = JSON.parse( window.localStorage.getItem("Lastid"));
+
+        DataStore = { ...DataPokemon, newName: NamePokemon, imgPokemon: img ,idNew : Lastid + 1 };
+        window.localStorage.setItem("Lastid", Lastid + 1);
+        DataFromBack.push(DataStore);
   
-    handleClose()
-  }
+        window.localStorage.setItem("dataPokemon", JSON.stringify(DataFromBack));
+        
+      }
+      handleClose();
+    }
+    else{
+      alert("nama Sudah Di gunakan")
+    }
 
+
+  };
 
   const handleChatch = () => {
     var min = 0;
@@ -83,9 +128,9 @@ export const PokemonDetail = () => {
     var rand = min + Math.random() * (max - min);
     delay(function () {
       if (rand >= 50) {
-        handleClickOpen()
-      }else{
-        handleClickOpen2()
+        handleClickOpen();
+      } else {
+        handleClickOpen2();
       }
     }, 2000); // end delay
   };
@@ -98,7 +143,6 @@ export const PokemonDetail = () => {
     setOpen(false);
   };
 
-  
   const handleClickOpen2 = () => {
     setOpen2(true);
   };
@@ -107,11 +151,6 @@ export const PokemonDetail = () => {
     setOpen2(false);
   };
   const classes = useStyles();
-
-
-
-  
-
 
   const getPokemonDetail = () => {
     let client = new ApolloClient({
@@ -201,7 +240,7 @@ export const PokemonDetail = () => {
                 color: darkgoldenrod;
               `}
             >
-              <div   ref= {myRef}>{DataPokemon.name}</div>
+              <div ref={myRef}>{DataPokemon.name}</div>
             </Grid>
           </Grid>
         </h1>
@@ -212,10 +251,8 @@ export const PokemonDetail = () => {
             border-radius: 12px;
             margin-bottom: -3rem;
           `}
-         
         >
           <img
-     
             className={css`
               width: -webkit-fill-available;
               filter: drop-shadow(0.6rem 0.8rem 0.35rem);
@@ -295,13 +332,12 @@ export const PokemonDetail = () => {
                   max-width: 20rem;
                   width: 100%;
                   margin: -13rem auto -19rem;
-                  left : 30px;
+                  left: 45px;
                   border-radius: 50%;
                   transform: scale(0.4);
                   position: absolute;
                   z-index: 3;
                   filter: drop-shadow(0.8rem -0.3rem 0.35rem);
-
                   :hover {
                     -webkit-animation: rotate-diagonal-2 0.6s linear infinite
                       alternate-reverse both;
@@ -344,42 +380,71 @@ export const PokemonDetail = () => {
               />
             </Grid>
           </Grid>
-            {/* Dialog 1 */}
+          {/* Dialog 1 */}
           <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Congrats you got a new pokemon "}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description"> 
-            <TextField onChange={(e)=>{HandleNewName(e)}} id="outlined-basic" label="Pokemon New Name " variant="outlined" />
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} variant="contained" color="secondary">
-            Release
-          </Button>
-          <Button onClick={()=>{NewPokemonSubmit()}} variant="contained" color="primary" autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
-      {/* Dialog 2  */}
-      <Dialog
-        open={open2}
-        onClose={handleClose2}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"sorry you failed to catch this pokemon, keep the spirit repeat again :)"}</DialogTitle>
-        <DialogActions>
-          <Button onClick={handleClose2} variant="contained" color="primary" autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Congrats you got a new pokemon "}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                <TextField
+                  onChange={(e) => {
+                    HandleNewName(e);
+                  }}
+                  id="outlined-basic"
+                  label="Pokemon New Name "
+                  variant="outlined"
+                />
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={handleClose}
+                variant="contained"
+                color="secondary"
+              >
+                Release
+              </Button>
+              <Button
+                onClick={() => {
+                  NewPokemonSubmit();
+                }}
+                variant="contained"
+                color="primary"
+                autoFocus
+              >
+                Agree
+              </Button>
+            </DialogActions>
+          </Dialog>
+          {/* Dialog 2  */}
+          <Dialog
+            open={open2}
+            onClose={handleClose2}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {
+                "sorry you failed to catch this pokemon, keep the spirit repeat again :)"
+              }
+            </DialogTitle>
+            <DialogActions>
+              <Button
+                onClick={handleClose2}
+                variant="contained"
+                color="primary"
+                autoFocus
+              >
+                Agree
+              </Button>
+            </DialogActions>
+          </Dialog>
           <Grid container>
             <Grid item xs={12}>
               {/*  */}
@@ -391,7 +456,7 @@ export const PokemonDetail = () => {
                   id="panel1a-header"
                 >
                   <Typography className={classes.heading}>
-                    <h3>Pokemon Stats</h3>
+                    <h3>Pokemon Stats </h3>
                   </Typography>
                   <Grid
                     container
@@ -406,7 +471,9 @@ export const PokemonDetail = () => {
                       ""
                     )}
                   </Grid>
+                  
                 </AccordionSummary>
+            
                 <AccordionDetails>
                   <Grid container>
                     <Grid item xs={12}>
