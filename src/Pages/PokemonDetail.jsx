@@ -295,7 +295,7 @@ export const PokemonDetail = () => {
                   max-width: 20rem;
                   width: 100%;
                   margin: -13rem auto -19rem;
-
+                  left : 30px;
                   border-radius: 50%;
                   transform: scale(0.4);
                   position: absolute;
