@@ -208,7 +208,7 @@ export const PokemonDetail = () => {
         <div
           className={css`
             display: flex;
-            padding: 3rem;
+            // padding: 3rem;
             border-radius: 12px;
             margin-bottom: -3rem;
           `}
