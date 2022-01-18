@@ -3,36 +3,37 @@ import { GlobalConsumer } from "../contexts/DataContext";
 import { Container, Grid, Paper } from "@material-ui/core";
 import { CardPokemon } from "../Components/CardPokemon";
 import { css, cx } from "@emotion/css";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 class PokemonList extends Component {
   state = {
     dataPokemon: this.props.state.Data,
   };
 
+  handleMove = (props, img) => {
+    this.props.setImg(img);
 
-  handleMove =(props ,img)=>{
-   this.props.setImg(img)
+    window.location = `/PokemonDetail?name=${props}`;
+  };
 
-    window.location =`/PokemonDetail?name=${props}`
-  }
+
 
   HnadleMapCard = () => {
     let data = this.props.state.Data.results;
     let dataLenght = data ? data.length : 0;
     return (
-      <Grid container spacing={5}
-      >
+      <Grid container spacing={5}>
         {" "}
         {data
           ? data.map((x) => (
               <Grid
-              onClick={()=>{this.handleMove(x.name , x.dreamworld)}}
+                onClick={() => {
+                  this.handleMove(x.name, x.dreamworld);
+                }}
                 key={x.id}
                 container
                 xs={12}
                 md={3}
-
                 className={css`
                   margin-top: 6rem;
                   margin-left: 2rem;
@@ -63,6 +64,45 @@ class PokemonList extends Component {
                       height: 17rem;
                       margin-top: -4rem;
                       filter: drop-shadow(0.6rem 0.8rem 0.35rem);
+
+                     :hover{
+                      -webkit-animation: scale-up-bottom 2s
+                      cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
+                      alternate-reverse both;
+                    animation: scale-up-bottom 2s
+                      cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
+                      alternate-reverse both;
+                      filter: drop-shadow(1rem 0.8rem 0rem red);
+                     }
+
+                      @-webkit-keyframes scale-up-bottom {
+                        0% {
+                          -webkit-transform: scale(0.9);
+                          transform: scale(0.9);
+                          -webkit-transform-origin: 50% 100%;
+                          transform-origin: 50% 100%;
+                        }
+                        100% {
+                          -webkit-transform: scale(1);
+                          transform: scale(1);
+                          -webkit-transform-origin: 50% 100%;
+                          transform-origin: 50% 100%;
+                        }
+                      }
+                      @keyframes scale-up-bottom {
+                        0% {
+                          -webkit-transform: scale(0.9);
+                          transform: scale(0.9);
+                          -webkit-transform-origin: 50% 100%;
+                          transform-origin: 50% 100%;
+                        }
+                        100% {
+                          -webkit-transform: scale(1);
+                          transform: scale(1);
+                          -webkit-transform-origin: 50% 100%;
+                          transform-origin: 50% 100%;
+                        }
+                      }
                     `}
                   />
                 </Grid>
@@ -113,7 +153,6 @@ class PokemonList extends Component {
           margin-top: 4.5rem;
         `}
       >
-        
         <h2>Pokemon List</h2>
         {data
           ? data.map((x) => (
@@ -122,7 +161,9 @@ class PokemonList extends Component {
                 item
                 xs={12}
                 md={12}
-                onClick={()=>{this.handleMove(x.name , x.dreamworld)}}
+                onClick={() => {
+                  this.handleMove(x.name, x.dreamworld);
+                }}
                 className={css`
                   display: flex;
                   justify-content: left;

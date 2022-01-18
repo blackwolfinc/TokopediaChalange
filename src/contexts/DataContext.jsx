@@ -36,7 +36,7 @@ export const DataContext = (Childern) => {
       client
         .query({
           query: gql`
-            query pokemons($limit: Int = 30, $offset: Int) {
+            query pokemons($limit: Int = 50, $offset: Int) {
               pokemons(limit: $limit, offset: $offset) {
                 count
                 next

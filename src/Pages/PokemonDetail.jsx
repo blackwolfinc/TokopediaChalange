@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState  ,useRef } from "react";
 import {
   Container,
   Grid,
@@ -8,6 +8,13 @@ import {
   Typography,
   ExpandMoreIcon,
   AccordionDetails,
+  Dialog ,
+  DialogActions ,
+  DialogContent ,
+  DialogContentText ,
+  DialogTitle ,
+  Button,
+  TextField
 } from "@material-ui/core";
 import ApolloClient from "apollo-boost";
 import { useHistory } from "react-router-dom";
@@ -29,9 +36,12 @@ export const PokemonDetail = () => {
     let foo = params.get("name");
     return foo;
   };
+  let myRef = React.createRef();
   const [param, setparam] = useState(checkparams());
   const [DataPokemon, setDataPokemon] = useState("");
-  const [DataPokemon2, setDataPokemon2] = useState("");
+  const [NamePokemon, setNamePokemon] = useState("");
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const [ImgFromLocal, setImgFromLocal] = useState(
     window.localStorage.getItem("img")
   );
@@ -46,7 +56,62 @@ export const PokemonDetail = () => {
     },
   }));
 
+  const delay = (function () {
+    var timer = 0;
+    return function (callback, ms) {
+      clearTimeout(timer);
+      timer = setTimeout(callback, ms);
+    };
+  })();
+
+  const HandleNewName=(e)=>{
+    setNamePokemon(e.target.value)
+  }
+
+  const NewPokemonSubmit =()=>{
+
+    window.localStorage.setItem( "newName" , NamePokemon )
+    window.localStorage.setItem(   "dataPokemon" ,JSON.stringify(DataPokemon) )
+  
+    handleClose()
+  }
+
+
+  const handleChatch = () => {
+    var min = 0;
+    var max = 100;
+    var rand = min + Math.random() * (max - min);
+    delay(function () {
+      if (rand >= 50) {
+        handleClickOpen()
+      }else{
+        handleClickOpen2()
+      }
+    }, 2000); // end delay
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
   const classes = useStyles();
+
+
+
+  
+
 
   const getPokemonDetail = () => {
     let client = new ApolloClient({
@@ -136,22 +201,70 @@ export const PokemonDetail = () => {
                 color: darkgoldenrod;
               `}
             >
-              <div>{DataPokemon.name}</div>
+              <div   ref= {myRef}>{DataPokemon.name}</div>
             </Grid>
           </Grid>
         </h1>
-
-        <img
+        <div
           className={css`
-            width: -webkit-fill-available;
-            filter: drop-shadow(0.6rem 0.8rem 0.35rem);
-            max-width: 40rem !important ;
-            max-height: 20rem !important ;
-            margin-bottom: 10rem;
-            
+            display: flex;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: -3rem;
           `}
-          src={ImgFromLocal}
-        />
+         
+        >
+          <img
+     
+            className={css`
+              width: -webkit-fill-available;
+              filter: drop-shadow(0.6rem 0.8rem 0.35rem);
+              max-width: 40rem !important ;
+              max-height: 20rem !important ;
+              margin-bottom: 10rem;
+              margin-top: 1rem;
+
+              -webkit-animation: scale-up-bottom 5s
+                cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
+                alternate-reverse both;
+              animation: scale-up-bottom 5s
+                cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
+                alternate-reverse both;
+              filter: drop-shadow(1rem 0.8rem 0rem dark);
+
+              @-webkit-keyframes scale-up-bottom {
+                0% {
+                  -webkit-transform: scale(0.95);
+                  transform: scale(0.95);
+                  -webkit-transform-origin: 50% 100%;
+                  transform-origin: 50% 100%;
+                }
+                100% {
+                  -webkit-transform: scale(1);
+                  transform: scale(1);
+                  -webkit-transform-origin: 50% 100%;
+                  transform-origin: 50% 100%;
+                }
+              }
+              @keyframes scale-up-bottom {
+                0% {
+                  -webkit-transform: scale(0.95);
+                  transform: scale(0.95);
+                  -webkit-transform-origin: 50% 100%;
+                  transform-origin: 50% 100%;
+                }
+                100% {
+                  -webkit-transform: scale(1);
+                  transform: scale(1);
+                  -webkit-transform-origin: 50% 100%;
+                  transform-origin: 50% 100%;
+                }
+              }
+            `}
+            src={ImgFromLocal}
+          />
+        </div>
+
         <Grid
           container
           className={css`
@@ -169,51 +282,104 @@ export const PokemonDetail = () => {
               md={12}
               className={css`
                 max-height: 14rem;
+                postion: relative;
+                display: flex;
+                justify-content: space-between;
               `}
             >
               <img
+                onClick={() => {
+                  handleChatch();
+                }}
                 className={css`
-            max-width: 30rem;
-            width: 100%;
-            margin-top: -12rem;
-            margin-bottom -9rem;
-            border-radius: 50%;
-            transform : scale(0.5);
+                  max-width: 20rem;
+                  width: 100%;
+                  margin: -13rem auto -19rem;
 
-            :hover{
-              
-              -webkit-animation: rotate-center 1s cubic-bezier(0.550, 0.055, 0.675, 0.190) 1s infinite both;
-	            animation: rotate-center 1s cubic-bezier(0.550, 0.055, 0.675, 0.190) 1s infinite both;
-            
-            }
+                  border-radius: 50%;
+                  transform: scale(0.4);
+                  position: absolute;
+                  z-index: 3;
+                  filter: drop-shadow(0.8rem -0.3rem 0.35rem);
 
-            @-webkit-keyframes rotate-center {
-              0% {
-                -webkit-transform: rotate(0)  scale(0.6);
-                        transform: rotate(0)  scale(0.6);
-              }
-              100% {
-                -webkit-transform: rotate(360deg)  scale(0.6);
-                        transform: rotate(360deg)  scale(0.6);
-              }
-            }
-            @keyframes rotate-center {
-              0% {
-                -webkit-transform: rotate(0)  scale(0.6);
-                        transform: rotate(0)  scale(0.6);
-              }
-              100% {
-                -webkit-transform: rotate(360deg)  scale(0.6);
-                        transform: rotate(360deg)  scale(0.6);
-              }
-            }
-          `}
+                  :hover {
+                    -webkit-animation: rotate-diagonal-2 0.6s linear infinite
+                      alternate-reverse both;
+                    animation: rotate-diagonal-2 0.6s linear infinite
+                      alternate-reverse both;
+                  }
+
+                  @-webkit-keyframes rotate-diagonal-2 {
+                    0% {
+                      -webkit-transform: rotate3d(-1, 1, 0, 0deg) scale(0.5);
+                      transform: rotate3d(-1, 1, 0, 0deg) scale(0.5);
+                    }
+                    50% {
+                      -webkit-transform: rotate3d(-1, 1, 0, 180deg) scale(0.5);
+                      transform: rotate3d(-1, 1, 0, 180deg) scale(0.5);
+                    }
+                    100% {
+                      -webkit-transform: rotate3d(-1, 1, 0, 360deg) scale(0.5);
+                      transform: rotate3d(-1, 1, 0, 360deg) scale(0.5);
+                    }
+                  }
+                  @keyframes rotate-diagonal-2 {
+                    0% {
+                      -webkit-transform: rotate3d(-1, 1, 0, 0deg) scale(1);
+                      transform: rotate3d(-1, 1, 0, 0deg) scale(1);
+                      margin-top: -30rem;
+                    }
+                    50% {
+                      -webkit-transform: rotate3d(1, -1, 0, 180deg) scale(0.5);
+                      transform: rotate3d(1, -1, 0, 180deg) scale(0.5);
+                    }
+                    100% {
+                      -webkit-transform: rotate3d(1, 1, -1, 360deg) scale(0.5);
+                      transform: rotate3d(1, 1, -1, 360deg) scale(0.5);
+                    }
+                  }
+                `}
                 src={Pokeball}
                 alt=""
               />
             </Grid>
           </Grid>
-
+            {/* Dialog 1 */}
+          <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Congrats you got a new pokemon "}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description"> 
+            <TextField onChange={(e)=>{HandleNewName(e)}} id="outlined-basic" label="Pokemon New Name " variant="outlined" />
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} variant="contained" color="secondary">
+            Release
+          </Button>
+          <Button onClick={()=>{NewPokemonSubmit()}} variant="contained" color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
+      {/* Dialog 2  */}
+      <Dialog
+        open={open2}
+        onClose={handleClose2}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"sorry you failed to catch this pokemon, keep the spirit repeat again :)"}</DialogTitle>
+        <DialogActions>
+          <Button onClick={handleClose2} variant="contained" color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
           <Grid container>
             <Grid item xs={12}>
               {/*  */}

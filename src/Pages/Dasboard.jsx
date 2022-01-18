@@ -19,6 +19,37 @@ export const Dasboard = () => {
         className={css`
           //  background-color:red;
           width: 100%;
+          -webkit-animation: scale-up-hor-center 4s cubic-bezier(0.390, 0.575, 0.565, 1.000) infinite both;
+	        animation: scale-up-hor-center 4s cubic-bezier(0.390, 0.575, 0.565, 1.000) infinite both;
+
+          @-webkit-keyframes scale-up-hor-center {
+            0% {
+              -webkit-transform: scaleX(0.8);
+                      transform: scaleX(0.8);
+            }
+            150% {
+              -webkit-transform: scaleX(1);
+                      transform: scaleX(1);
+            }
+            100% {
+              -webkit-transform: scaleX(0.8);
+                      transform: scaleX(0.8);
+            }
+          }
+          @keyframes scale-up-hor-center {
+            0% {
+              -webkit-transform: scaleX(0.8);
+                      transform: scaleX(0.8);
+            }
+            50% {
+              -webkit-transform: scaleX(1);
+                      transform: scaleX(1);
+            }
+            100% {
+              -webkit-transform: scaleX(0.8);
+                      transform: scaleX(0.8);
+            }
+          }
         `}
         src={logo}
         alt=""
@@ -34,6 +65,10 @@ export const Dasboard = () => {
           font-size: x-large;
           font-weight: 200;
           font-family: fantasy;
+
+          :hover{
+            transform: scaleX(1.1);
+          }
         `}
         onClick={()=>{
           HandletoPokemon()
