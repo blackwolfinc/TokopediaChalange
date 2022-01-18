@@ -16,7 +16,7 @@ class RoutesProject extends Component {
             <Route path="MyPokemonList" element={<MyPokemonList />}></Route>
             <Route path="PokemonDetail" element={<PokemonDetail />} />
             <Route path="PokemonList" element={<PokemonList />} />
-            <Route path="/" element={<Apolo />} />
+            <Route path="/" element={<Dasboard/>} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -20,8 +20,7 @@ import { HandleMoves } from "../Components/HandleMoves";
 import { makeStyles } from "@material-ui/core/styles";
 import SimpleTabs from "../Components/LayoutDetailCard";
 
-import Pokeball from "../Assets/Img/pokeball.png"
-
+import Pokeball from "../Assets/Img/pokeball.png";
 
 export const PokemonDetail = () => {
   const checkparams = () => {
@@ -149,6 +148,7 @@ export const PokemonDetail = () => {
             max-width: 40rem !important ;
             max-height: 20rem !important ;
             margin-bottom: 10rem;
+            
           `}
           src={ImgFromLocal}
         />
@@ -165,14 +165,14 @@ export const PokemonDetail = () => {
           `}
         >
           <Grid container>
-            <Grid md={12} 
-             className={css`
-      max-height : 14rem ;
-           `}
-    > 
-  
-            <img
-            className={css`
+            <Grid
+              md={12}
+              className={css`
+                max-height: 14rem;
+              `}
+            >
+              <img
+                className={css`
             max-width: 30rem;
             width: 100%;
             margin-top: -12rem;
@@ -189,26 +189,28 @@ export const PokemonDetail = () => {
 
             @-webkit-keyframes rotate-center {
               0% {
-                -webkit-transform: rotate(0)  scale(0.65);
-                        transform: rotate(0)  scale(0.65);
+                -webkit-transform: rotate(0)  scale(0.6);
+                        transform: rotate(0)  scale(0.6);
               }
               100% {
-                -webkit-transform: rotate(360deg)  scale(0.65);
-                        transform: rotate(360deg)  scale(0.65);
+                -webkit-transform: rotate(360deg)  scale(0.6);
+                        transform: rotate(360deg)  scale(0.6);
               }
             }
             @keyframes rotate-center {
               0% {
-                -webkit-transform: rotate(0)  scale(0.65);
-                        transform: rotate(0)  scale(0.65);
+                -webkit-transform: rotate(0)  scale(0.6);
+                        transform: rotate(0)  scale(0.6);
               }
               100% {
-                -webkit-transform: rotate(360deg)  scale(0.65);
-                        transform: rotate(360deg)  scale(0.65);
+                -webkit-transform: rotate(360deg)  scale(0.6);
+                        transform: rotate(360deg)  scale(0.6);
               }
             }
           `}
-            src={Pokeball} alt="" />
+                src={Pokeball}
+                alt=""
+              />
             </Grid>
           </Grid>
 
@@ -262,7 +264,6 @@ export const PokemonDetail = () => {
               margin-top: 3rem;
             `}
           >
-            
             {DataPokemon ? <SimpleTabs data={DataPokemon} /> : ""}
           </Grid>
         </Grid>

@@ -10,7 +10,22 @@ position: absolute;
 }
 
 body {
-    background-color: darkslategrey;
+    // background-color: darkslategrey;
+    margin: 0px;
+}
+
+.pokemon{
+    background: url("../Img/pokemon.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 110%;
+    margin-left: -5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .MuiAppBar-colorPrimary {

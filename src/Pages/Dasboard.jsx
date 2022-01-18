@@ -1,37 +1,46 @@
-import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import React from "react";
+import { css, cx } from "@emotion/css";
+import logo from "../Assets/Img/PokeTitle.png";
+import "../Assets/Scss/App.scss";
+import { useNavigate } from "react-router-dom";
 
-const GET_POKEMONS = gql`
-  query pokemons($limit: Int, $offset: Int) {
-    pokemons(limit: $limit, offset: $offset) {
-      count
-      next
-      previous
-      status
-      message
-      results {
-        url
-        name
-        image
-      }
-    }
-  }
-`;
 
-const gqlVariables = {
-  limit: 2,
-  offset: 1,
-};
 
 export const Dasboard = () => {
-  const { loading, error, data } = useQuery(GET_POKEMONS, {
-    variables: gqlVariables,
-  });
+  const history = useNavigate();
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+  const HandletoPokemon =()=>{
+    history(`/PokemonList`);
+  }
 
-  console.log('Response from server', data);
-  return 'Success!';
+  return (
+    <div className="pokemon">
+      <img
+        className={css`
+          //  background-color:red;
+          width: 100%;
+        `}
+        src={logo}
+        alt=""
+      />
+      <button
+        className={css`
+          padding: 1rem 2rem;
+          border-radius: 12px;
+          border: 4px solid #2d4596;
+          background: rgb(248 149 0);
+          text-transform: capitalize;
+          color: #005066;
+          font-size: x-large;
+          font-weight: 200;
+          font-family: fantasy;
+        `}
+        onClick={()=>{
+          HandletoPokemon()
+        }}
+      >
+        start your journey
+      </button>
+    </div>
+  );
 };
-             
