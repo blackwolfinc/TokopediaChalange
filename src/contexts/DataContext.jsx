@@ -107,7 +107,7 @@ export const DataContext = (Childern) => {
 
       handleImgChose  =(value)=>{  
       return  (
-        localStorage.setItem("img" , value )
+        sessionStorage.setItem("img" , value )
       
        
       )
