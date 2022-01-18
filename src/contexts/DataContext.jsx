@@ -107,7 +107,9 @@ export const DataContext = (Childern) => {
 
       handleImgChose  =(value)=>{  
       return  (
-        window.localStorage.setItem("img" , value )
+        localStorage.setItem("img" , value )
+      
+       
       )
 
       }

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Dasboard = () => {
   const history = useNavigate();
-
+  // webSettings.setDomStorageEnabled(true);
   const HandletoPokemon =()=>{
     history(`/PokemonList`);
   }

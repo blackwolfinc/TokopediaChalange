@@ -18,7 +18,7 @@ class MyPokemonList extends Component {
 
  
   HnadleMapCard = () => {
-    let data = JSON.parse(window.localStorage.getItem("dataPokemon"))
+    let data = JSON.parse(localStorage.getItem("dataPokemon"))
     let dataLenght = data ? data.length : 0;
 
     function arrayRemove(arr, value) { 
@@ -32,7 +32,7 @@ class MyPokemonList extends Component {
 
     const handleRemove=(e)=>{
  
-      window.localStorage.setItem("dataPokemon", JSON.stringify(arrayRemove(data , e.target.id)));
+      localStorage.setItem("dataPokemon", JSON.stringify(arrayRemove(data , e.target.id)));
       window.location.reload();
     }
   
@@ -180,7 +180,7 @@ class MyPokemonList extends Component {
   };
 
   handleLinkMap = () => {
-    let data = JSON.parse(window.localStorage.getItem("dataPokemon"))
+    let data = JSON.parse(localStorage.getItem("dataPokemon"))
     let dataLenght = data ? data.length : 0;
 
     return (

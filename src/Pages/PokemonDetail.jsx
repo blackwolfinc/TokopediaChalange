@@ -43,7 +43,7 @@ export const PokemonDetail = () => {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [ImgFromLocal, setImgFromLocal] = useState(
-    window.localStorage.getItem("img")
+   localStorage.getItem("img")
   );
 
   const useStyles = makeStyles((theme) => ({
@@ -70,7 +70,7 @@ export const PokemonDetail = () => {
 
   const handleCheckname =(data)=>{
     let HandleChange =true
-    let DataFromBack = JSON.parse(window.localStorage.getItem("dataPokemon"));
+    let DataFromBack = JSON.parse(localStorage.getItem("dataPokemon"));
     if(DataFromBack !==null){
       DataFromBack.map((result)=>{
         if(result.newName !== data){
@@ -88,8 +88,8 @@ export const PokemonDetail = () => {
 
 
   const NewPokemonSubmit = () => {
-    let DataFromBack = JSON.parse(window.localStorage.getItem("dataPokemon"));
-    let img = window.localStorage.getItem("img");
+    let DataFromBack = JSON.parse(localStorage.getItem("dataPokemon"));
+    let img = localStorage.getItem("img");
 
  
    
@@ -98,19 +98,19 @@ export const PokemonDetail = () => {
         let DataStore = [
           { ...DataPokemon, newName: NamePokemon, imgPokemon: img , idNew : 0},
         ];
-        window.localStorage.setItem("dataPokemon", JSON.stringify(DataStore));
-        window.localStorage.setItem("Lastid", 0);
+        localStorage.setItem("dataPokemon", JSON.stringify(DataStore));
+        localStorage.setItem("Lastid", 0);
       } else {
         let DataStore = [
 
         ];
-        let Lastid = JSON.parse( window.localStorage.getItem("Lastid"));
+        let Lastid = JSON.parse( localStorage.getItem("Lastid"));
 
         DataStore = { ...DataPokemon, newName: NamePokemon, imgPokemon: img ,idNew : Lastid + 1 };
-        window.localStorage.setItem("Lastid", Lastid + 1);
+        localStorage.setItem("Lastid", Lastid + 1);
         DataFromBack.push(DataStore);
   
-        window.localStorage.setItem("dataPokemon", JSON.stringify(DataFromBack));
+        localStorage.setItem("dataPokemon", JSON.stringify(DataFromBack));
         
       }
       handleClose();

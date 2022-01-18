@@ -67,10 +67,18 @@ export default function SimpleTabs(data) {
       <AppBar position="static">
         <Tabs
           value={value}
+          className={css`
+          display: flex;
+          justify-content: center;
+          font-size: 12px;
+        `}
           onChange={handleChange}
           aria-label="simple tabs example"
+          
+          
+       
         >
-          <Tab label="Pokemon Ability" {...a11yProps(0)} />
+          <Tab  label="Pokemon Ability" {...a11yProps(0)} />
           <Tab label="Pokemon Move" {...a11yProps(1)} />
 
         </Tabs>
