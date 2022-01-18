@@ -3,25 +3,36 @@ import { GlobalConsumer } from "../contexts/DataContext";
 import { Container, Grid, Paper } from "@material-ui/core";
 import { CardPokemon } from "../Components/CardPokemon";
 import { css, cx } from "@emotion/css";
+import { withRouter } from 'react-router-dom';
 
 class PokemonList extends Component {
   state = {
     dataPokemon: this.props.state.Data,
   };
 
+
+  handleMove =(props ,img)=>{
+   this.props.setImg(img)
+
+    window.location =`/PokemonDetail?name=${props}`
+  }
+
   HnadleMapCard = () => {
     let data = this.props.state.Data.results;
     let dataLenght = data ? data.length : 0;
     return (
-      <Grid container spacing={5}>
+      <Grid container spacing={5}
+      >
         {" "}
         {data
           ? data.map((x) => (
               <Grid
+              onClick={()=>{this.handleMove(x.name , x.dreamworld)}}
                 key={x.id}
                 container
                 xs={12}
                 md={3}
+
                 className={css`
                   margin-top: 6rem;
                   margin-left: 2rem;
@@ -74,7 +85,12 @@ class PokemonList extends Component {
                     className={css`
                       text-transform: uppercase;
                       font-family: monospace;
-                      font-size: 12px;
+                      font-size: 18px;
+
+                      background-color: beige;
+                      width: 100%;
+                      text-align: center;
+                      height: fit-content;
                     `}
                   >
                     {x.name}
@@ -97,21 +113,24 @@ class PokemonList extends Component {
           margin-top: 4.5rem;
         `}
       >
+        
         <h2>Pokemon List</h2>
         {data
           ? data.map((x) => (
               <button
+                key={x.id}
                 item
                 xs={12}
                 md={12}
+                onClick={()=>{this.handleMove(x.name , x.dreamworld)}}
                 className={css`
                   display: flex;
                   justify-content: left;
                   background-color: rgb(203 140 46 / 62%);
                   // color : #fff;
                   margin: 1rem 0rem !important;
-                  padding : 0.5rem 2rem !important;
-                  border-radius : 12px ;
+                  padding: 0.5rem 2rem !important;
+                  border-radius: 12px;
                   border: 1px solid #6d4710;
                   width: -webkit-fill-available;
                 `}
@@ -138,7 +157,7 @@ class PokemonList extends Component {
         container
         className={css`
           margin-top: 3rem;
-          margin-botom  : 3rem
+          margin-botom: 3rem;
         `}
         spacing={3}
       >

@@ -5,5 +5,16 @@ position: absolute;
     justify-content: center;
     align-items: center;
     background-color: rgb(255, 202, 202);
-    box-shadow:  35px -35px 70px #bababa7c,
+    text-transform: uppercase !important;   
+
+
+}
+
+body {
+    background-color: darkslategrey;
+}
+
+.MuiAppBar-colorPrimary {
+    color: #8f1818 !important;
+    background-color: #fff  !important;
 }

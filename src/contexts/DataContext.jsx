@@ -1,41 +1,12 @@
 import React, { Component, createContext, useEffect, useState } from "react";
 import ApolloClient from "apollo-boost";
 import useQuery from "@apollo/react-hooks";
+import { useHistory } from "react-router-dom";
 import { gql } from "apollo-boost";
 export const RootContex = createContext();
 const Provider = RootContex.Provider;
 
-//  const DataContextThis2fa-li = () => {
-//     state ={
 
-//     }
-
-//   client
-//     .query({
-//       query: gql`
-//       query pokemons($limit: Int, $offset: Int) {
-//           pokemons(limit: $limit, offset: $offset) {
-//             count
-//             next
-//             previous
-//             status
-//             message
-//             results {
-//               url
-//               name
-//               image
-//             }
-//           }
-//         }
-//       `
-//     })
-// .then( response => {
-//         // console.log(response)
-//      data = response
-//           return "aku"
-//     });
-
-// }
 
 class DataContextThis extends Component {
   render() {
@@ -47,11 +18,14 @@ class DataContextThis extends Component {
 
 // penyedia
 export const DataContext = (Childern) => {
+ 
+
   return class DataGlobal extends Component {
     state = {
       Dataini: 0,
       Data: "",
-      DataUnit : ""
+      DataUnit : "",
+      imgPokemon : ""
     };
 
     handle = () => {
@@ -129,12 +103,24 @@ export const DataContext = (Childern) => {
       }
     };
 
+
+
+      handleImgChose  =(value)=>{  
+      return  (
+        window.localStorage.setItem("img" , value )
+      )
+
+      }
+
+    
+
     render() {
       return (
         <Provider
           value={{
             state: this.state,
             action: this.handleChangeDispatach,
+            setImg : this.handleImgChose
           }}
         >
           <Childern {...this.props} />
