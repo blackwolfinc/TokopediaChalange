@@ -47,7 +47,7 @@ class PokemonList extends Component {
                   box-shadow: 35px -35px 70px #bababa7c, -35px 35px 70px #ffffff;
                 `}
               >
-                {console.log(x)}
+            
                 <Grid
                   item
                   xs={12}

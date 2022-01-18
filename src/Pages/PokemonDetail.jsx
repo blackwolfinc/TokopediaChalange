@@ -15,6 +15,7 @@ import {
   DialogTitle,
   Button,
   TextField,
+  Alert 
 } from "@material-ui/core";
 import ApolloClient from "apollo-boost";
 import { useHistory } from "react-router-dom";
@@ -113,6 +114,7 @@ export const PokemonDetail = () => {
         sessionStorage.setItem("dataPokemon", JSON.stringify(DataFromBack));
         
       }
+      
       handleClose();
     }
     else{
@@ -314,6 +316,7 @@ export const PokemonDetail = () => {
             border-radius: 12px;
           `}
         >
+          
           <Grid container>
             <Grid
               md={12}
@@ -324,6 +327,7 @@ export const PokemonDetail = () => {
                 justify-content: space-between;
               `}
             >
+               
               <img
                 onClick={() => {
                   handleChatch();
@@ -500,6 +504,8 @@ export const PokemonDetail = () => {
             {DataPokemon ? <SimpleTabs data={DataPokemon} /> : ""}
           </Grid>
         </Grid>
+ 
+
       </Grid>
     </Grid>
   );

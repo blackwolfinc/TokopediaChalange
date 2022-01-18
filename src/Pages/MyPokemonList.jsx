@@ -24,14 +24,12 @@ class MyPokemonList extends Component {
     function arrayRemove(arr, value) { 
     
       return arr.filter(function(ele){
-    
           return ele.idNew != value; 
       });
   }
   
 
     const handleRemove=(e)=>{
- 
       sessionStorage.setItem("dataPokemon", JSON.stringify(arrayRemove(data , e.target.id)));
       window.location.reload();
     }
