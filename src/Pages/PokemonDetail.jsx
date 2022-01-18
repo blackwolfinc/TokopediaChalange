@@ -18,8 +18,11 @@ import { HandleAbility } from "../Components/HandleAbility";
 import { HandlePokemonStat } from "../Components/HandlePokemonStat";
 import { HandleMoves } from "../Components/HandleMoves";
 import { makeStyles } from "@material-ui/core/styles";
-
 import SimpleTabs from "../Components/LayoutDetailCard";
+
+import Pokeball from "../Assets/Img/pokeball.png"
+
+
 export const PokemonDetail = () => {
   const checkparams = () => {
     let search = window.location.search;
@@ -145,7 +148,7 @@ export const PokemonDetail = () => {
             filter: drop-shadow(0.6rem 0.8rem 0.35rem);
             max-width: 40rem !important ;
             max-height: 20rem !important ;
-            margin-bottom: 5rem;
+            margin-bottom: 10rem;
           `}
           src={ImgFromLocal}
         />
@@ -161,6 +164,54 @@ export const PokemonDetail = () => {
             border-radius: 12px;
           `}
         >
+          <Grid container>
+            <Grid md={12} 
+             className={css`
+      max-height : 14rem ;
+           `}
+    > 
+  
+            <img
+            className={css`
+            max-width: 30rem;
+            width: 100%;
+            margin-top: -12rem;
+            margin-bottom -9rem;
+            border-radius: 50%;
+            transform : scale(0.5);
+
+            :hover{
+              
+              -webkit-animation: rotate-center 1s cubic-bezier(0.550, 0.055, 0.675, 0.190) 1s infinite both;
+	            animation: rotate-center 1s cubic-bezier(0.550, 0.055, 0.675, 0.190) 1s infinite both;
+            
+            }
+
+            @-webkit-keyframes rotate-center {
+              0% {
+                -webkit-transform: rotate(0)  scale(0.65);
+                        transform: rotate(0)  scale(0.65);
+              }
+              100% {
+                -webkit-transform: rotate(360deg)  scale(0.65);
+                        transform: rotate(360deg)  scale(0.65);
+              }
+            }
+            @keyframes rotate-center {
+              0% {
+                -webkit-transform: rotate(0)  scale(0.65);
+                        transform: rotate(0)  scale(0.65);
+              }
+              100% {
+                -webkit-transform: rotate(360deg)  scale(0.65);
+                        transform: rotate(360deg)  scale(0.65);
+              }
+            }
+          `}
+            src={Pokeball} alt="" />
+            </Grid>
+          </Grid>
+
           <Grid container>
             <Grid item xs={12}>
               {/*  */}
