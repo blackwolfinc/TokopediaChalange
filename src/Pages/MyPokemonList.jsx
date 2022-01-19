@@ -1,4 +1,4 @@
-import { Container, Grid, Paper } from "@material-ui/core";
+import {  Grid } from "@material-ui/core";
 import { css, cx } from "@emotion/css";
 
 import React, { Component } from "react";
@@ -41,12 +41,13 @@ class MyPokemonList extends Component {
               <Grid
                 key={x.idNew}
                 container
+                item
                 xs={12}
                 md={3}
                 className={css`
-                  margin-top: 6rem;
-                  margin-left: 2rem;
-                  margin-right: 2rem;
+                  margin-top: 6rem !important;
+                  margin-left: 2rem !important;
+                  margin-right: 2rem !important;
                   border: 3px solid #bababa7c;
                   display: flex;
                   justify-content: center;

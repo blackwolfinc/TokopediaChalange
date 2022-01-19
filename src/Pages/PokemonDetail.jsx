@@ -1,12 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Container,
   Grid,
-  Paper,
   Accordion,
   AccordionSummary,
   Typography,
-  ExpandMoreIcon,
   AccordionDetails,
   Dialog,
   DialogActions,
@@ -18,16 +15,12 @@ import {
   Alert,
 } from "@material-ui/core";
 import ApolloClient from "apollo-boost";
-import { useHistory } from "react-router-dom";
 import { gql } from "apollo-boost";
-import { css, cx } from "@emotion/css";
+import { css} from "@emotion/css";
 import { HandleTypes } from "../Components/HandleTypes";
-import { HandleAbility } from "../Components/HandleAbility";
 import { HandlePokemonStat } from "../Components/HandlePokemonStat";
-import { HandleMoves } from "../Components/HandleMoves";
 import { makeStyles } from "@material-ui/core/styles";
 import SimpleTabs from "../Components/LayoutDetailCard";
-
 import Pokeball from "../Assets/Img/pokeball.png";
 
 export const PokemonDetail = () => {
@@ -35,8 +28,12 @@ export const PokemonDetail = () => {
     let search = window.location.search;
     let params = new URLSearchParams(search);
     let foo = params.get("name");
-    return foo;
+    console.log(foo)
+    return (foo === null || foo === ""|| foo === undefined ? window.location.href="/pokemonList":  foo )
+
+    
   };
+
   let myRef = React.createRef();
   const [param, setparam] = useState(checkparams());
   const [DataPokemon, setDataPokemon] = useState("");
@@ -110,7 +107,7 @@ export const PokemonDetail = () => {
 
         sessionStorage.setItem("dataPokemon", JSON.stringify(DataFromBack));
       }
-
+      window.location.href="MyPokemonList"
       handleClose();
     } else {
       alert("nama Sudah Di gunakan");

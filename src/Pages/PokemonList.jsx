@@ -18,7 +18,7 @@ class PokemonList extends Component {
 
   HnadleMapCard = () => {
     let data = this.props.state.Data.results;
-    let dataLenght = data ? data.length : 0;
+    
     return (
       <Grid container spacing={5}>
         {" "}
@@ -30,12 +30,15 @@ class PokemonList extends Component {
                 }}
                 key={x.id}
                 container
+                
                 xs={12}
                 md={3}
+                item
+
                 className={css`
-                  margin-top: 6rem;
-                  margin-left: 2rem;
-                  margin-right: 2rem;
+                  margin-top: 6rem !important;
+                  margin-left: 2rem !important;
+                  margin-right: 2rem !important;
                   border: 3px solid #0d131ae6;
                   display: flex;
                   justify-content: center;
@@ -143,7 +146,6 @@ class PokemonList extends Component {
 
   handleLinkMap = () => {
     let data = this.props.state.Data.results;
-    let dataLenght = data ? data.length : 0;
 
     return (
       <Grid
