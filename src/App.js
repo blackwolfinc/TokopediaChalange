@@ -1,10 +1,9 @@
 import React from "react";
-import { Apolo } from "./Pages/Apolo";
 import { Layout } from "./Pages/Layout/Layout";
 import { css, cx } from "@emotion/css";
-import "./Assets/Scss/App.scss";
-import MenuAppBar from "./Components/Navbar";
 
+import MenuAppBar from "./Components/Navbar";
+import "./Assets/Scss/App.scss";
 export const App = () => {
   return (
     <div
