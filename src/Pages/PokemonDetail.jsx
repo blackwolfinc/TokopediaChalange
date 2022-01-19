@@ -15,7 +15,7 @@ import {
   DialogTitle,
   Button,
   TextField,
-  Alert 
+  Alert,
 } from "@material-ui/core";
 import ApolloClient from "apollo-boost";
 import { useHistory } from "react-router-dom";
@@ -44,7 +44,7 @@ export const PokemonDetail = () => {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [ImgFromLocal, setImgFromLocal] = useState(
-   sessionStorage.getItem("img")
+    sessionStorage.getItem("img")
   );
 
   const useStyles = makeStyles((theme) => ({
@@ -69,59 +69,52 @@ export const PokemonDetail = () => {
     setNamePokemon(e.target.value);
   };
 
-  const handleCheckname =(data)=>{
-    let HandleChange =true
+  const handleCheckname = (data) => {
+    let HandleChange = true;
     let DataFromBack = JSON.parse(sessionStorage.getItem("dataPokemon"));
-    if(DataFromBack !==null){
-      DataFromBack.map((result)=>{
-        if(result.newName !== data){
-        
+    if (DataFromBack !== null) {
+      DataFromBack.map((result) => {
+        if (result.newName !== data) {
+        } else {
+          HandleChange = false;
         }
-        else{
-          HandleChange=false
-        }
-      })
+      });
     }
 
-
-      return HandleChange
-  }
-
+    return HandleChange;
+  };
 
   const NewPokemonSubmit = () => {
     let DataFromBack = JSON.parse(sessionStorage.getItem("dataPokemon"));
     let img = sessionStorage.getItem("img");
 
- 
-   
-    if(handleCheckname(NamePokemon) === true){
+    if (handleCheckname(NamePokemon) === true) {
       if (DataFromBack === null) {
         let DataStore = [
-          { ...DataPokemon, newName: NamePokemon, imgPokemon: img , idNew : 0},
+          { ...DataPokemon, newName: NamePokemon, imgPokemon: img, idNew: 0 },
         ];
         sessionStorage.setItem("dataPokemon", JSON.stringify(DataStore));
         sessionStorage.setItem("Lastid", 0);
       } else {
-        let DataStore = [
+        let DataStore = [];
+        let Lastid = JSON.parse(sessionStorage.getItem("Lastid"));
 
-        ];
-        let Lastid = JSON.parse( sessionStorage.getItem("Lastid"));
-
-        DataStore = { ...DataPokemon, newName: NamePokemon, imgPokemon: img ,idNew : Lastid + 1 };
+        DataStore = {
+          ...DataPokemon,
+          newName: NamePokemon,
+          imgPokemon: img,
+          idNew: Lastid + 1,
+        };
         sessionStorage.setItem("Lastid", Lastid + 1);
         DataFromBack.push(DataStore);
-  
+
         sessionStorage.setItem("dataPokemon", JSON.stringify(DataFromBack));
-        
       }
-      
+
       handleClose();
+    } else {
+      alert("nama Sudah Di gunakan");
     }
-    else{
-      alert("nama Sudah Di gunakan")
-    }
-
-
   };
 
   const handleChatch = () => {
@@ -316,7 +309,6 @@ export const PokemonDetail = () => {
             border-radius: 12px;
           `}
         >
-          
           <Grid container>
             <Grid
               md={12}
@@ -327,7 +319,6 @@ export const PokemonDetail = () => {
                 justify-content: space-between;
               `}
             >
-               
               <img
                 onClick={() => {
                   handleChatch();
@@ -475,9 +466,8 @@ export const PokemonDetail = () => {
                       ""
                     )}
                   </Grid>
-                  
                 </AccordionSummary>
-            
+
                 <AccordionDetails>
                   <Grid container>
                     <Grid item xs={12}>
@@ -504,8 +494,6 @@ export const PokemonDetail = () => {
             {DataPokemon ? <SimpleTabs data={DataPokemon} /> : ""}
           </Grid>
         </Grid>
- 
-
       </Grid>
     </Grid>
   );

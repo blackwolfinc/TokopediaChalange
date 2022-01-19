@@ -5,7 +5,6 @@ import React, { Component } from "react";
 import { GlobalConsumer } from "../contexts/DataContext";
 
 class MyPokemonList extends Component {
-  
   state = {
     dataPokemon: this.props.state.Data,
   };
@@ -16,31 +15,30 @@ class MyPokemonList extends Component {
     window.location = `/PokemonDetail?name=${props}`;
   };
 
- 
   HnadleMapCard = () => {
-    let data = JSON.parse(sessionStorage.getItem("dataPokemon"))
+    let data = JSON.parse(sessionStorage.getItem("dataPokemon"));
     let dataLenght = data ? data.length : 0;
 
-    function arrayRemove(arr, value) { 
-    
-      return arr.filter(function(ele){
-          return ele.idNew != value; 
+    function arrayRemove(arr, value) {
+      return arr.filter(function (ele) {
+        return ele.idNew != value;
       });
-  }
-  
-
-    const handleRemove=(e)=>{
-      sessionStorage.setItem("dataPokemon", JSON.stringify(arrayRemove(data , e.target.id)));
-      window.location.reload();
     }
-  
+
+    const handleRemove = (e) => {
+      sessionStorage.setItem(
+        "dataPokemon",
+        JSON.stringify(arrayRemove(data, e.target.id))
+      );
+      window.location.reload();
+    };
+
     return (
       <Grid container spacing={5}>
         {" "}
         {data
           ? data.map((x) => (
               <Grid
-      
                 key={x.idNew}
                 container
                 xs={12}
@@ -79,15 +77,15 @@ class MyPokemonList extends Component {
                       margin-top: -4rem;
                       filter: drop-shadow(0.6rem 0.8rem 0.35rem);
 
-                     :hover{
-                      -webkit-animation: scale-up-bottom 2s
-                      cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
-                      alternate-reverse both;
-                    animation: scale-up-bottom 2s
-                      cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
-                      alternate-reverse both;
-                      filter: drop-shadow(1rem 0.8rem 0rem red);
-                     }
+                      :hover {
+                        -webkit-animation: scale-up-bottom 2s
+                          cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
+                          alternate-reverse both;
+                        animation: scale-up-bottom 2s
+                          cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
+                          alternate-reverse both;
+                        filter: drop-shadow(1rem 0.8rem 0rem red);
+                      }
 
                       @-webkit-keyframes scale-up-bottom {
                         0% {
@@ -151,25 +149,27 @@ class MyPokemonList extends Component {
                     {x.newName}
                   </h3>
                 </Grid>
-                <button 
-                 className={css`
-             
-                 border: 3px solid #dfa041;
-                 display: flex;
-                 justify-content: center;
-                 border-radius: 12px;
-                padding:1rem 3rem ;
-                width: 100%;
-                text-transform: uppercase;
-                background-color: orangered;
-                color: aliceblue;
-                      
-                //  box-shadow: 35px -35px 70px #bababa7c, -35px 35px 70px #ffffff;
-               `}
-                
-                id={x.idNew} onClick={(e)=>{handleRemove(e)}}>release</button>
-             
+                <button
+                  className={css`
+                    border: 3px solid #dfa041;
+                    display: flex;
+                    justify-content: center;
+                    border-radius: 12px;
+                    padding: 1rem 3rem;
+                    width: 100%;
+                    text-transform: uppercase;
+                    background-color: orangered;
+                    color: aliceblue;
 
+                    //  box-shadow: 35px -35px 70px #bababa7c, -35px 35px 70px #ffffff;
+                  `}
+                  id={x.idNew}
+                  onClick={(e) => {
+                    handleRemove(e);
+                  }}
+                >
+                  release
+                </button>
               </Grid>
             ))
           : ""}
@@ -178,7 +178,7 @@ class MyPokemonList extends Component {
   };
 
   handleLinkMap = () => {
-    let data = JSON.parse(sessionStorage.getItem("dataPokemon"))
+    let data = JSON.parse(sessionStorage.getItem("dataPokemon"));
     let dataLenght = data ? data.length : 0;
 
     return (
@@ -225,7 +225,7 @@ class MyPokemonList extends Component {
       </Grid>
     );
   };
-  
+
   render() {
     return (
       <Grid

@@ -5,7 +5,6 @@ import { Dasboard } from "../../Pages/Dasboard";
 import { PokemonDetail } from "../../Pages/PokemonDetail";
 import  PokemonList  from "../../Pages/PokemonList";
 import MyPokemonList from "../../Pages/MyPokemonList";
-import { Apolo } from "../Apolo";
 
 class RoutesProject extends Component {
   render() {

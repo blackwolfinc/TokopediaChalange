@@ -25,8 +25,16 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "cypress run --record --key 43f849da-c708-498a-b10a-66315e75415f",
+    "clean-reports": "rimraf cypress/report &&  rimraf cypress/screenshots &&  rimraf cypress/videos  &&  rimraf cypress/downloads",
+    "add-folder": "mkdirp cypress/report && mkdirp cypress/report/mochawesome-report && mkdirp cypress/screenshots && mkdirp cypress/videos && mkdirp cypress/downloads",
+    "combine-reports": "mochawesome-merge cypress/report/mochawesome-report/*.json > cypress/report/output.json",
+    "generate-report": "marge cypress/report/output.json --reportDir ./ --inline ",
+    "posttest": "npm run combine-reports && npm run generate-report",
+    "test": "npm run test-clear && npm run cypress && npm run posttest",
+    "test-clear": "npm run clean-reports && npm run add-folder",
+    "test-app": "npm run test-clear && cypress open "
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +53,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^9.3.0",
+    "cypress-multi-reporters": "^1.5.0",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^6.0.1"
   }
 }

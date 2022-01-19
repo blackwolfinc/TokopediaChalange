@@ -16,8 +16,6 @@ class PokemonList extends Component {
     window.location = `/PokemonDetail?name=${props}`;
   };
 
-
-
   HnadleMapCard = () => {
     let data = this.props.state.Data.results;
     let dataLenght = data ? data.length : 0;
@@ -47,7 +45,6 @@ class PokemonList extends Component {
                   box-shadow: 35px -35px 70px #bababa7c, -35px 35px 70px #ffffff;
                 `}
               >
-            
                 <Grid
                   item
                   xs={12}
@@ -66,15 +63,15 @@ class PokemonList extends Component {
                       margin-top: -4rem;
                       filter: drop-shadow(0.6rem 0.8rem 0.35rem);
 
-                     :hover{
-                      -webkit-animation: scale-up-bottom 2s
-                      cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
-                      alternate-reverse both;
-                    animation: scale-up-bottom 2s
-                      cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
-                      alternate-reverse both;
-                      filter: drop-shadow(1rem 0.8rem 0rem red);
-                     }
+                      :hover {
+                        -webkit-animation: scale-up-bottom 2s
+                          cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
+                          alternate-reverse both;
+                        animation: scale-up-bottom 2s
+                          cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite
+                          alternate-reverse both;
+                        filter: drop-shadow(1rem 0.8rem 0rem red);
+                      }
 
                       @-webkit-keyframes scale-up-bottom {
                         0% {

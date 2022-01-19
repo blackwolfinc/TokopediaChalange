@@ -59,8 +59,7 @@ export const HandleAbility = (data) => {
               width: 100%
             `}
             >{abiltyName}</h3>
-            {/* <h1>{efek}</h1> */}
-            {/* {console.log(DataPokemon2)} */}
+         
           </Grid>
         );
       });
