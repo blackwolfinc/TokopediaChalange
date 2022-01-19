@@ -22,7 +22,7 @@ import { HandlePokemonStat } from "../Components/HandlePokemonStat";
 import { makeStyles } from "@material-ui/core/styles";
 import SimpleTabs from "../Components/LayoutDetailCard";
 import Pokeball from "../Assets/Img/pokeball.png";
-
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 export const PokemonDetail = () => {
   const checkparams = () => {
     let search = window.location.search;
@@ -33,7 +33,6 @@ export const PokemonDetail = () => {
 
     
   };
-
   let myRef = React.createRef();
   const [param, setparam] = useState(checkparams());
   const [DataPokemon, setDataPokemon] = useState("");
@@ -448,7 +447,8 @@ export const PokemonDetail = () => {
                   id="panel1a-header"
                 >
                   <Typography className={classes.heading}>
-                    <h3>Pokemon Stats </h3>
+                    <h3>Pokemon Stats <ArrowDropDownIcon/> </h3>
+                 
                   </Typography>
                   <Grid
                     container

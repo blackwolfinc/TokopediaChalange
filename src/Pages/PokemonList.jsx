@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { GlobalConsumer } from "../contexts/DataContext";
-import { Container, Grid, Paper } from "@material-ui/core";
-import { CardPokemon } from "../Components/CardPokemon";
-import { css, cx } from "@emotion/css";
-import { withRouter } from "react-router-dom";
+import {  Grid } from "@material-ui/core";
+import { css } from "@emotion/css";
 
 class PokemonList extends Component {
   state = {

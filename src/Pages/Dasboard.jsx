@@ -1,12 +1,10 @@
 import React from "react";
-import { css, cx } from "@emotion/css";
+import { css } from "@emotion/css";
 import { useNavigate } from "react-router-dom";
 import logo from "../Assets/Img/PokeTitle.png";
 import "../Assets/Scss/App.scss";
 export const Dasboard = () => {
   const history = useNavigate();
-
-
   const HandletoPokemon = () => {
     history(`/PokemonList`);
   };

@@ -1,7 +1,6 @@
-import {  Grid } from "@material-ui/core";
-import { css, cx } from "@emotion/css";
-
 import React, { Component } from "react";
+import {  Grid } from "@material-ui/core";
+import { css } from "@emotion/css";
 import { GlobalConsumer } from "../contexts/DataContext";
 
 class MyPokemonList extends Component {
@@ -17,7 +16,6 @@ class MyPokemonList extends Component {
 
   HnadleMapCard = () => {
     let data = JSON.parse(sessionStorage.getItem("dataPokemon"));
-    let dataLenght = data ? data.length : 0;
 
     function arrayRemove(arr, value) {
       return arr.filter(function (ele) {
@@ -180,7 +178,6 @@ class MyPokemonList extends Component {
 
   handleLinkMap = () => {
     let data = JSON.parse(sessionStorage.getItem("dataPokemon"));
-    let dataLenght = data ? data.length : 0;
 
     return (
       <Grid
