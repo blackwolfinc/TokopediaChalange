@@ -2,7 +2,7 @@ import React from 'react'
 import ApolloClient from "apollo-boost";
 import { css, cx } from "@emotion/css";
 import { gql } from "apollo-boost";
-import { Container, Grid, Paper } from "@material-ui/core";
+import {  Grid } from "@material-ui/core";
 
 export const HandleAbility = (data) => {
     let handleData = data.data 

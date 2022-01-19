@@ -190,7 +190,7 @@ class MyPokemonList extends Component {
           ? data.map((x) => (
               <button
                 key={x.idNew}
-                item
+          
                 xs={12}
                 md={12}
                 onClick={() => {

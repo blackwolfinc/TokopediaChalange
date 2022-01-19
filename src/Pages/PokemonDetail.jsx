@@ -16,22 +16,20 @@ import {
 } from "@material-ui/core";
 import ApolloClient from "apollo-boost";
 import { gql } from "apollo-boost";
-import { css} from "@emotion/css";
+import { css } from "@emotion/css";
 import { HandleTypes } from "../Components/HandleTypes";
 import { HandlePokemonStat } from "../Components/HandlePokemonStat";
-import { makeStyles } from "@material-ui/core/styles";
 import SimpleTabs from "../Components/LayoutDetailCard";
 import Pokeball from "../Assets/Img/pokeball.png";
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 export const PokemonDetail = () => {
   const checkparams = () => {
     let search = window.location.search;
     let params = new URLSearchParams(search);
     let foo = params.get("name");
-    console.log(foo)
-    return (foo === null || foo === ""|| foo === undefined ? window.location.href="/pokemonList":  foo )
-
-    
+    return foo === null || foo === "" || foo === undefined
+      ? (window.location.href = "/pokemonList")
+      : foo;
   };
   let myRef = React.createRef();
   const [param, setparam] = useState(checkparams());
@@ -42,16 +40,6 @@ export const PokemonDetail = () => {
   const [ImgFromLocal, setImgFromLocal] = useState(
     sessionStorage.getItem("img")
   );
-
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      width: "100%",
-    },
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-  }));
 
   const delay = (function () {
     var timer = 0;
@@ -106,7 +94,7 @@ export const PokemonDetail = () => {
 
         sessionStorage.setItem("dataPokemon", JSON.stringify(DataFromBack));
       }
-      window.location.href="MyPokemonList"
+      window.location.href = "MyPokemonList";
       handleClose();
     } else {
       alert("nama Sudah Di gunakan");
@@ -141,7 +129,6 @@ export const PokemonDetail = () => {
   const handleClose2 = () => {
     setOpen2(false);
   };
-  const classes = useStyles();
 
   const getPokemonDetail = () => {
     let client = new ApolloClient({
@@ -307,6 +294,7 @@ export const PokemonDetail = () => {
         >
           <Grid container>
             <Grid
+              item
               md={12}
               className={css`
                 max-height: 14rem;
@@ -438,17 +426,14 @@ export const PokemonDetail = () => {
           </Dialog>
           <Grid container>
             <Grid item xs={12}>
-              {/*  */}
-
               <Accordion>
                 <AccordionSummary
                   expandIcon={""}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography className={classes.heading}>
-                    <h3>Pokemon Stats <ArrowDropDownIcon/> </h3>
-                 
+                  <Typography>
+                    Pokemon Stats <ArrowDropDownIcon />
                   </Typography>
                   <Grid
                     container

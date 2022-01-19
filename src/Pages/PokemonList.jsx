@@ -28,10 +28,10 @@ class PokemonList extends Component {
                 }}
                 key={x.id}
                 container
-                
+                item
                 xs={12}
                 md={3}
-                item
+           
 
                 className={css`
                   margin-top: 6rem !important;
@@ -156,7 +156,7 @@ class PokemonList extends Component {
           ? data.map((x) => (
               <button
                 key={x.id}
-                item
+             
                 xs={12}
                 md={12}
                 onClick={() => {

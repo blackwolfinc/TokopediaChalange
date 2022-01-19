@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Grid, Paper } from "@material-ui/core";
+import {  Grid } from "@material-ui/core";
 import { css, cx } from "@emotion/css";
 
 export const HandlePokemonStat = (data) => {

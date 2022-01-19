@@ -1,16 +1,18 @@
 import React from "react";
-import { Container, Grid, Paper } from "@material-ui/core";
-import { css, cx } from "@emotion/css";
+import {  Grid } from "@material-ui/core";
+import { css,  } from "@emotion/css";
 
 export const HandleTypes = (data) => {
   let hendleData = data.data;
+
   return data
-    ? hendleData.map((result) => {
+    ? hendleData.map((result ,id) => {
         return (
-          <Grid xs={2}>
+          <Grid item xs={2}>
             {/* {result.type.name} */}
             {result.type.name === "fire" ? (
               <div
+              key={1}
                 className={css`
                   align-items: center;
                   text-align: center;
@@ -30,6 +32,7 @@ export const HandleTypes = (data) => {
             )}
             {result.type.name === "grass" ? (
               <div
+              key={2}
                 className={css`
                   align-items: center;
                   text-align: center;
@@ -49,6 +52,7 @@ export const HandleTypes = (data) => {
             )}
             {result.type.name === "poison" ? (
               <div
+              key={3}
                 className={css`
                   align-items: center;
                   text-align: center;
@@ -68,6 +72,7 @@ export const HandleTypes = (data) => {
             )}
             {result.type.name === "flying" ? (
               <div
+              key={4}
                 className={css`
                   align-items: center;
                   text-align: center;
@@ -87,6 +92,7 @@ export const HandleTypes = (data) => {
             )}
             {result.type.name === "water" ? (
               <div
+              key={5}
                 className={css`
                   align-items: center;
                   font-family: fantasy;
@@ -106,6 +112,7 @@ export const HandleTypes = (data) => {
             )}
             {result.type.name === "bug" ? (
               <div
+              key={6}
                 className={css`
                   align-items: center;
                   text-align: center;
@@ -125,6 +132,7 @@ export const HandleTypes = (data) => {
             )}
             {result.type.name === "normal" ? (
               <div
+              key={7}
                 className={css`
                   align-items: center;
                   text-align: center;
@@ -145,6 +153,7 @@ export const HandleTypes = (data) => {
 
             {result.type.name === "electric" ? (
               <div
+              key={8}
                 className={css`
                   align-items: center;
                   text-align: center;
@@ -165,6 +174,7 @@ export const HandleTypes = (data) => {
 
             {result.type.name === "ground" ? (
               <div
+              key={9}
                 className={css`
                   align-items: center;
                   text-align: center;
